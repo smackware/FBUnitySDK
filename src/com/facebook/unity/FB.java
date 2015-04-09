@@ -66,9 +66,17 @@ public class FB {
 
     @UnityCallable
     public static void Login(String params) {
+		/*FBUnityLoginActivity frag = new FBUnityLoginActivity();
+		getUnityActivity().getFragmentManager().beginTransaction();
+		*/
+		
+		FBLogin.login(params, getUnityActivity());
+		/*
         Intent intent = new Intent(getUnityActivity(), FBUnityLoginActivity.class);
         intent.putExtra(FBUnityLoginActivity.LOGIN_PARAMS, params);
         getUnityActivity().startActivity(intent);
+		*/
+		
     }
 
     @UnityCallable

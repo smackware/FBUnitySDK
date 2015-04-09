@@ -20,6 +20,7 @@ import com.facebook.model.GraphUser;
 
 public class FBLogin {
     public static void init(String appID) {
+		Log.w(FB.TAG, "FBLogin.init");
         Session session;
         if (FB.isLoggedIn()) {
             session = Session.getActiveSession();
@@ -47,6 +48,7 @@ public class FBLogin {
     }
 
     public static void login(String params, final Activity activity) {
+		Log.w(FB.TAG, "FBLogin.login");
         Session session = Session.getActiveSession();
         if (session == null) {
             Log.w(FB.TAG, "Session not found. Call init() before calling login()");

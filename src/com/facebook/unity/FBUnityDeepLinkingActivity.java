@@ -13,10 +13,10 @@ public class FBUnityDeepLinkingActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		
-		Log.v(FB.TAG, "Saving deep link from deep linking activity");
+		Log.w(FB.TAG, "Saving deep link from deep linking activity");
 		FB.SetIntent(this.getIntent());
 		
-		Log.v(FB.TAG, "Returning to main activity");
+		Log.w(FB.TAG, "Returning to main activity");
 		//start main activity
 		Intent newIntent = new Intent(this, getMainActivityClass());
 		this.startActivity(newIntent);
