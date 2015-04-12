@@ -11,13 +11,26 @@ import com.unity3d.player.UnityPlayerActivity;
 
 public class FBUnityLoginActivity extends UnityPlayerActivity  {
 	public static final String LOGIN_PARAMS = "login_params";
+	public static final String INIT_PARAM = "is_init";
+	public static final String APP_ID = "app_id";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		Log.w("FBTAG", "FBUnityLoginActivity.onCreate");
         super.onCreate(savedInstanceState);
 		restoreSession(savedInstanceState);
-        FBLogin.login(getIntent().getStringExtra(LOGIN_PARAMS), this);
+		if (getIntent().getBooleanExtra(INIT_PARAM, false))
+		{
+			Log.w("FBTAG", "FBUnityLoginActivity.INIT TIME");
+			String appId = getIntent().getStringExtra(APP_ID);
+			FBLogin.init(APP_ID);
+			this.finish();
+		}
+		else
+		{
+			Log.w("FBTAG", "FBUnityLoginActivity.LOGIN TIME");
+			FBLogin.login(getIntent().getStringExtra(LOGIN_PARAMS), this);			
+		}        
 	}
 	
 	@Override
@@ -30,7 +43,7 @@ public class FBUnityLoginActivity extends UnityPlayerActivity  {
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		FBLogin.onActivityResult(this, requestCode, resultCode, data);
-		//this.finish();
+		this.finish();
 	}
 	
     @Override

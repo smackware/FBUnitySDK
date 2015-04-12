@@ -61,7 +61,12 @@ public class FB {
         }
 
 	    // tries to log the user in if they've already TOS'd the app
-		FBLogin.init(appID);
+		// FBLogin.init(appID);
+        Intent intent = new Intent(getUnityActivity(), FBUnityLoginActivity.class);
+        intent.putExtra(FBUnityLoginActivity.LOGIN_PARAMS, params);
+		intent.putExtra(FBUnityLoginActivity.INIT_PARAM, true);
+		intent.putExtra(FBUnityLoginActivity.APP_ID, appID);
+        getUnityActivity().startActivity(intent);
     }
 
     @UnityCallable
@@ -70,12 +75,13 @@ public class FB {
 		getUnityActivity().getFragmentManager().beginTransaction();
 		*/
 		
-		FBLogin.login(params, getUnityActivity());
-		/*
+		//FBLogin.login(params, getUnityActivity());
+		
         Intent intent = new Intent(getUnityActivity(), FBUnityLoginActivity.class);
         intent.putExtra(FBUnityLoginActivity.LOGIN_PARAMS, params);
+		intent.putExtra(FBUnityLoginActivity.INIT_PARAM, false);
         getUnityActivity().startActivity(intent);
-		*/
+		
 		
     }
 
